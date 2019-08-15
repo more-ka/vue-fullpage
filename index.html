@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>fullpage</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100vh;
+      background: #000;
+    }
+
+    #app {
+      height: 100%;
+      width: 100%;
+    }
+
+    .block {
+      position: absolute;
+      height: 100vh;
+      width: 100%;
+    }
+
+
+    .down-enter-active {
+      transition: all 1s ease;
+      transform: translateY(0);
+    }
+    .down-leave-active {
+      transition: all 1s ease;
+      transform: translateY(-100%);
+    }
+    .down-enter {
+      transform: translateY(100%);
+    }
+    .down-leave {
+      transform: translateY(0);
+    }
+    .up-enter-active {
+      transition: all 1s ease;
+      transform: translateY(0);
+    }
+    .up-leave-active {
+      transition: all 1s ease;
+      transform: translateY(100%);
+    }
+    .up-enter {
+      transform: translateY(-100%);
+    }
+    .up-leave {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <transition-group tag="div" :name="move">
+    <div class="block" v-for="(list,index) in bgColor" :key="list" :style="{backgroundColor:list}"
+         v-show="index===currentIndex" @wheel="wheelEvent($event)" @transitionend="end">{{list}}
+    </div>
+  </transition-group>
+</div>
+</body>
+</html>
